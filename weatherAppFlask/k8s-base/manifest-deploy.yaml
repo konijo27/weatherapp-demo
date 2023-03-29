@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-  name: weatherApp-deployment
+  name: weatherapp-deployment
   namespace: base
 spec:
   replicas: 1
