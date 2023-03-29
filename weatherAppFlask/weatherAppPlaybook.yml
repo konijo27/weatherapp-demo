@@ -1,0 +1,33 @@
+---
+-hosts: all
+  tasks:
+    -name: Copy Dockerfile to server
+     copy:
+      src: Dockerfile
+      dest: .
+      ignore_errors: True
+
+    -name: Copy app to server
+     copy:
+       src: deployApp/
+       dest: .
+       ignore_errors: True
+
+  -name: Stop running container
+    command: docker stop weatherAppContainer
+    ignore_errors: True
+
+  -name: Remove container
+    command: docker rm weatherAppContainer
+    ignore_errors: True
+    
+  -name: Remove image
+    command: docker rmi weatherapp
+    ignore_errors: True
+    
+  -name: re-build image
+    command: docker build -t weatherapp .
+    
+  -name: Run container
+    command: docker run -d -p 5000:5000 --name weatherAppContainer weatherapp
+    ignore_errors: True

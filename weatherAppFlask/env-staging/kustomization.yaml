@@ -1,0 +1,13 @@
+---
+resources:
+  - ../k8s-base
+namespace: staging
+namePrefix: staging-
+nameSuffix: -v1
+
+patchesStrategicMerge:
+  - staging-deploy.yaml
+
+configMapGenerator:
+  - name: weatherapp-map
+    env: config.properties

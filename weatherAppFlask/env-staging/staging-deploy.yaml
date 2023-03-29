@@ -1,0 +1,8 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: weatherApp-deployment
+  namespace: base
+spec:
+  replicas: 5
